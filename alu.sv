@@ -9,7 +9,7 @@ module Alu(alu_in1, alu_in2, C, opcode, alu_out, Z);
 	output logic Z;
 	
 	always @(*) begin
-		case(opcode):
+		case(opcode)
 			`ADD_FN:		alu_out <= alu_in1 + alu_in2;
 			`ADDC_FN:		alu_out <= alu_in1 + alu_in2 + C;
 			`SUB_FN:		alu_out <= alu_in1 - alu_in2;
