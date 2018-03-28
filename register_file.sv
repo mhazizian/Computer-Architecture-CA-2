@@ -1,9 +1,12 @@
 `include "defines.sv"
 
-module DataMemory(input clk, rst,
-	input[2:0] ReadReg1, ReadReg2 , WriteReg,
-	input [7:0] WriteData,
-	output logic [7:0]ReadData1, ReadData2);
+module RegisterFile(clk, rst, ReadReg1, ReadReg2 , WriteReg, WriteData,
+	ReadData1, ReadData2);
+
+	input clk, rst;
+	input [2:0] ReadReg1, ReadReg2 , WriteReg;
+	input [7:0] WriteData;
+	output logic [7:0] ReadData1, ReadData2;
 
 	logic [7:0] q0, q1, q2, q3, q4, q5, q6, q7;
 	logic ld0, ld1, ld2, ld3, ld4, ld5, ld6, ld7;
@@ -53,7 +56,7 @@ module DataMemory(input clk, rst,
 		`R5 : ld5 = 1;
 		`R6 : ld6 = 1;
 		`R7 : ld7 = 1;
-		endcase // WriteReg 
+		endcase
 	end
 
 	always@(posedge rst) begin

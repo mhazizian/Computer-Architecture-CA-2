@@ -1,9 +1,9 @@
-module TB_DataMemory();
+module TB_RegisterFile();
 	logic clk = 1'b0, rst = 1'b0;
 	logic[2:0] ReadReg1 = 3'b000, ReadReg2 = 3'b000, WriteReg = 3'b000;
 	logic[7:0] WriteData, ReadData1, ReadData2;
 
-	DataMemory DM(clk, rst, ReadReg1, ReadReg2 , WriteReg,
+	RegisterFile RF(clk, rst, ReadReg1, ReadReg2 , WriteReg,
 		WriteData, ReadData1, ReadData2);
 
 
