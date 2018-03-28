@@ -8,18 +8,19 @@ module InstructionMemory(rst, address, instruction);
 
 	always @(posedge rst) begin
 		ins_memory <= '{default:19'b0};
-		ins_memory[0] <= 19'b0000000101001100000;
-		
-		ins_memory[1] <= 19'b0000000100101100000;
-		ins_memory[2] <= 19'b0000011100111000000;
-		ins_memory[3] <= 19'b0010001000101100000;
-		ins_memory[4] <= 19'b0011010000111100000;
+		ins_memory[1] <= 19'b0000000101001100000;
 
-		ins_memory[7] <= 19'b000001011010000000;
+		ins_memory[2] <= 19'b0000000100101100000;
+		ins_memory[3] <= 19'b0000011100111000000;
+
+		ins_memory[4] <= 19'b0010001000101100000;
+		ins_memory[5] <= 19'b0011010000111100000;
+
+		ins_memory[8] <= 19'b0000010110100000000;
 
 
 
-		ins_memory[9] <= 19'b0001011011101000000;
+		ins_memory[10] <= 19'b0001011011101000000;
 	end
 
 	always @(address) begin

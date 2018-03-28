@@ -20,7 +20,7 @@ module RegisterFile(clk, rst, ReadReg1, ReadReg2 , WriteReg, WriteData,
 	register_8 r6(clk, rst, ld6, WriteData, q6);
 	register_8 r7(clk, rst, ld7, WriteData, q7);
 
-	always @(ReadReg1) begin
+	always @(ReadReg1, ReadReg2,posedge clk) begin
 		case(ReadReg1)
 			`R0 : ReadData1 = q0;
 			`R1 : ReadData1 = q1;
@@ -33,7 +33,7 @@ module RegisterFile(clk, rst, ReadReg1, ReadReg2 , WriteReg, WriteData,
 		endcase
 	end
 
-	always @(ReadReg2) begin
+	always @(ReadReg2, ReadReg1,posedge clk) begin
 		case(ReadReg2)
 			`R0 : ReadData2 = q0;
 			`R1 : ReadData2 = q1;
@@ -46,7 +46,10 @@ module RegisterFile(clk, rst, ReadReg1, ReadReg2 , WriteReg, WriteData,
 		endcase
 	end
 
-	always @(WriteReg) begin
+	always @(posedge clk, WriteReg) begin
+		ld0 = 0; ld1 = 0; ld2 = 0; ld3 = 0;
+		ld4 = 0; ld5 = 0; ld6 = 0; ld7 = 0;
+
 		case (WriteReg)
 		`R0 : ld0 = 1;
 		`R1 : ld1 = 1;
