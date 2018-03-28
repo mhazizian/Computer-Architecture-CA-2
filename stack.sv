@@ -5,17 +5,17 @@ module Stack(address, push, pop, stack_out);
 	output logic [1:0] stack_out;
 
 	reg [1:0] stack [0:3];
-	logic [2:0] pointer = 3'b0;
+	logic [1:0] pointer = 2'b0;
 	
 	always @(push, pop, address) begin	
 		if(pop)	begin
-			stack_out <= stack[pointer];
-			pointer <= pointer - 3'b001;
+			pointer <= pointer - 2'b01;
+			stack_out <= stack[pointer];			
 		end
 
 		if(push) begin
-			pointer <= pointer + 3'b001;
 			stack[pointer] <= address;
+			pointer <= pointer + 2'b01;
 		end
 	end
 	
