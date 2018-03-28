@@ -12,8 +12,8 @@ module Alu(alu_in1, alu_in2, cin, opcode, alu_out, zero, cout);
 		case(opcode)
 			`ADD_FN:		{cout, alu_out} <= alu_in1 + alu_in2;
 			`ADDC_FN:		{cout, alu_out} <= alu_in1 + alu_in2 + cin;
-			`SUB_FN:		alu_out <= alu_in1 - alu_in2;
-			`SUBC_FN: 		alu_out <= alu_in1 - alu_in2 - cin;
+			`SUB_FN:		{cout, alu_out} <= alu_in1 - alu_in2;
+			`SUBC_FN: 		{cout, alu_out} <= alu_in1 - alu_in2 - cin;
 			`AND_FN:		alu_out <= alu_in1 & alu_in2;
 			`OR_FN:			alu_out <= alu_in1 | alu_in2;
 			`XOR_FN:		alu_out <= alu_in1 ^ alu_in2;
