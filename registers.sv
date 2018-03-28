@@ -21,6 +21,18 @@ module register_8(clk, rst, ld, d, q);
 	end
 endmodule
 
+module register_12(clk, rst, ld, d, q);
+
+	input clk, rst, ld;
+	input [11:0]d;
+	output logic [11:0]q;
+
+	always@(posedge clk, posedge rst) begin
+		if (ld) q <= d;
+		if (rst) q <= 11'b0;
+	end
+endmodule
+
 module register_19(clk, rst, ld, d, q);
 
 	input clk, rst, ld;
