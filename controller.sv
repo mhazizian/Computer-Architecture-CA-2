@@ -38,10 +38,10 @@ module Controller(instruction, ALU_op, sel_ALUScr_reg, sel_ALUScr_const,
 		if (instruction[5:3] ==`MEMORY_TYPE_OPCODE) begin
 			sel_ALUScr_const = 1;
 
-			if (instruction[2:0] == `STM_FN) begin
+			if (instruction[2:1] == `STM_FN) begin
 				MemWrite = 1;
 			end
-			if (instruction[2:0] == `LDM_FN) begin
+			if (instruction[2:1] == `LDM_FN) begin
 				MemRead = 1;
 				sel_RegisterFile_in_memory = 1;
 				RegisterFileWriteEn = 1;
