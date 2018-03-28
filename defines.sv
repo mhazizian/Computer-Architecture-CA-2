@@ -53,3 +53,17 @@
 `define R6 3'b110
 `define R7 3'b111
 
+// ALU functions
+
+`define ADD_ALU 4'b0000
+`define ADDC_ALU 4'b0001
+`define SUB_ALU 4'b0010
+`define SUBC_ALU 4'b0011
+`define AND_ALU 4'b0100
+`define OR_ALU 4'b0101
+`define XOR_ALU 4'b0110
+`define MASK_ALU 4'b0111
+`define SHL_ALU 4'b1000
+`define SHR_ALU 4'b1001
+`define ROL_ALU 4'b1010
+`define ROR_ALU 4'b1011
