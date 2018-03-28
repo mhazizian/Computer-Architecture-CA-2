@@ -10,15 +10,17 @@ module data_path(clk, rst);
 	
 	logic cin = 1'b0, zero, cout, sel_ALUScr_reg, sel_ALUScr_const,
 				sel_PCSrc_offset, sel_PCSrc_const, sel_PCSrc_plus1, MemRead, MemWrite,
-				sel_RegisterFile_in_alu, sel_RegisterFile_in_memory, RegisterFileWriteEn;
+				sel_RegisterFile_in_alu, sel_RegisterFile_in_memory, RegisterFileWriteEn,
+				sel_RegisterFileWriteDst_r2;
 		
-	logic [2:0] ALU_op;
+	logic [2:0] ALU_op, register_file_write_dst;
 	
 	// Controller
 
 	Controller controller(instruction[18:13], ALU_op, sel_ALUScr_reg, sel_ALUScr_const,
 		sel_PCSrc_offset, sel_PCSrc_const, sel_PCSrc_plus1, MemWrite, MemRead,
-		sel_RegisterFile_in_alu, sel_RegisterFile_in_memory, RegisterFileWriteEn);
+		sel_RegisterFile_in_alu, sel_RegisterFile_in_memory, RegisterFileWriteEn,
+		sel_RegisterFileWriteDst_r2);
 	
 	// Sign enxtender
 	
@@ -40,7 +42,9 @@ module data_path(clk, rst);
 	
 	// Register file
 	
-	RegisterFile rf(clk, rst, RegisterFileWriteEn, instruction[10:8],  instruction[7:5], instruction[13:11], register_file_write_input, alu_in1, register_file_out2);
+	mux_2_to_1_3 mux_rf_source(instruction[10:8], instruction[13:11], sel_RegisterFileWriteDst_r2, register_file_write_dst);
+	
+	RegisterFile rf(clk, rst, RegisterFileWriteEn, instruction[10:8],  instruction[7:5], register_file_write_dst, register_file_write_input, alu_in1, register_file_out2);
 
 	// ALU block
 	
