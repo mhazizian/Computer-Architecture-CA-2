@@ -37,6 +37,7 @@ module Controller(instruction, ALU_op, sel_ALUScr_reg, sel_ALUScr_const,
 		end
 		if (instruction[5:3] ==`MEMORY_TYPE_OPCODE) begin
 			sel_ALUScr_const = 1;
+			sel_PCSrc_plus1 = 1;
 
 			if (instruction[2:1] == `STM_FN) begin
 				MemWrite = 1;
