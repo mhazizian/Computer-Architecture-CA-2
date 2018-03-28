@@ -13,7 +13,7 @@ module Controller(instruction, ALU_op, sel_ALUScr_reg, sel_ALUScr_const);
 			ALU_op = instruction[3:0];
 			sel_ALUScr_reg = 1;
 		end
-		if (instruction[5:4] ==`REGISTER_TYPE_OPCODE) begin
+		if (instruction[5:4] ==`IMMEDIATE_TYPE_OPCODE) begin
 			ALU_op = instruction[3:0];
 			sel_ALUScr_const = 1;
 		end
