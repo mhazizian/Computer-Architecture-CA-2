@@ -18,3 +18,10 @@ module mux_2_to_1_1(first, second, sel_first, sel_second, out);
 	output out;
 	assign out = sel_first ? first : (sel_second ? second : out); 
 endmodule
+
+module mux_2_to_1_12(first, second, sel_first, sel_second, out);
+	input[11:0] first, second;
+	input sel_first, sel_second;
+	output[11:0] out;
+	assign out = sel_first ? first : (sel_second ? second : out); 
+endmodule
