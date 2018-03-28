@@ -10,6 +10,6 @@ module DataMemory(rst, Address, WriteData, MemRead, MemWrite, ReadData);
 		if (rst) data <= '{default:8'b0};
 		if (MemRead) ReadData = data[Address];
 		if (MemWrite) data[Address] = WriteData;
-	end // always @(Address, MemRead, MemWrite)
+	end
 
 endmodule
