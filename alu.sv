@@ -6,7 +6,7 @@ module Alu(alu_in1, alu_in2, cin, opcode, alu_out, zero, cout);
 	input [2:0] opcode;
 	input cin;
 	output logic [7:0] alu_out;
-	output logic zero;
+	output logic zero, cout;
 	
 	always @(*) begin
 		case(opcode)
