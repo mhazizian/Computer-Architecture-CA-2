@@ -21,7 +21,7 @@ module data_path(clk, rst);
 
 	sign_extender s_extender(instruction[7:0], pc_offset);
 	
-	adder_12(pc_offset, pc_plus1, pc_plus_offset);
+	adder_12 pc_adder(pc_offset, pc_plus1, pc_plus_offset);
 	
 	mux_3_to_1_12 mux_pc_source(pc_plus1, instruction[11:0], pc_plus_offset, sel_PCSrc_plus1, sel_PCSrc_const, sel_PCSrc_offset, next_pc);
 
