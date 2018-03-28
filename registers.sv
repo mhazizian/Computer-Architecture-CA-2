@@ -27,7 +27,7 @@ module pc_register(clk, rst, d, q);
 	input [11:0]d;
 	output logic [11:0]q;
 
-	always@(posedge clk, posedge rst) begin
+	always@(negedge clk, posedge rst) begin
 		if (rst) q <= 11'b0;
 		else q <= d;
 	end
