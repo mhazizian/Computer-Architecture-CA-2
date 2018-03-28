@@ -1,9 +1,9 @@
 `include "defines.sv"
 
-module RegisterFile(clk, rst, ReadReg1, ReadReg2 , WriteReg, WriteData,
+module RegisterFile(clk, rst, RegWriteEn, ReadReg1, ReadReg2 , WriteReg, WriteData,
 	ReadData1, ReadData2);
 
-	input clk, rst;
+	input clk, rst, RegWriteEn;
 	input [2:0] ReadReg1, ReadReg2 , WriteReg;
 	input [7:0] WriteData;
 	output logic [7:0] ReadData1, ReadData2;
@@ -47,19 +47,22 @@ module RegisterFile(clk, rst, ReadReg1, ReadReg2 , WriteReg, WriteData,
 	end
 
 	always @(posedge clk, WriteReg) begin
+
 		ld0 = 0; ld1 = 0; ld2 = 0; ld3 = 0;
 		ld4 = 0; ld5 = 0; ld6 = 0; ld7 = 0;
-
-		case (WriteReg)
-		`R0 : ld0 = 1;
-		`R1 : ld1 = 1;
-		`R2 : ld2 = 1;
-		`R3 : ld3 = 1;
-		`R4 : ld4 = 1;
-		`R5 : ld5 = 1;
-		`R6 : ld6 = 1;
-		`R7 : ld7 = 1;
-		endcase
+		
+		if (RegWriteEn) begin
+			case (WriteReg)
+			`R0 : ld0 = 1;
+			`R1 : ld1 = 1;
+			`R2 : ld2 = 1;
+			`R3 : ld3 = 1;
+			`R4 : ld4 = 1;
+			`R5 : ld5 = 1;
+			`R6 : ld6 = 1;
+			`R7 : ld7 = 1;
+			endcase
+		end
 	end
 
 	always@(posedge rst) begin
