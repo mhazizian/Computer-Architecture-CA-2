@@ -6,7 +6,7 @@ module DataMemory(input clk, rst,
 	output logic [7:0]ReadData1, ReadData2);
 
 	logic [7:0] q0, q1, q2, q3, q4, q5, q6, q7;
-	logic ld0, ld1, ld2, ld3, ld4, ld5, ld7, ld7;
+	logic ld0, ld1, ld2, ld3, ld4, ld5, ld6, ld7;
 
 	register_8 r0(clk, rst, ld0, 8'b0, q0);
 	register_8 r1(clk, rst, ld1, WriteData, q1);
@@ -17,33 +17,44 @@ module DataMemory(input clk, rst,
 	register_8 r6(clk, rst, ld6, WriteData, q6);
 	register_8 r7(clk, rst, ld7, WriteData, q7);
 
-	assign ReadData1 = (ReadReg1 == `R0) ? q0 :
-					   (ReadReg1 == `R1) ? q1 :
-					   (ReadReg1 == `R2) ? q2 :
-					   (ReadReg1 == `R3) ? q3 :
-					   (ReadReg1 == `R4) ? q4 :
-					   (ReadReg1 == `R5) ? q5 :
-					   (ReadReg1 == `R6) ? q6 : q7;
+	always @(ReadReg1) begin
+		case(ReadReg1)
+			`R0 : ReadData1 = q0;
+			`R1 : ReadData1 = q1;
+			`R2 : ReadData1 = q2;
+			`R3 : ReadData1 = q3;
+			`R4 : ReadData1 = q4;
+			`R5 : ReadData1 = q5;
+			`R6 : ReadData1 = q6;
+			`R7 : ReadData1 = q7;
+		endcase
+	end
 
-	assign ReadData2 = (ReadReg2 == `R0) ? q0 :
-					   (ReadReg2 == `R1) ? q1 :
-					   (ReadReg2 == `R2) ? q2 :
-					   (ReadReg2 == `R3) ? q3 :
-					   (ReadReg2 == `R4) ? q4 :
-					   (ReadReg2 == `R5) ? q5 :
-					   (ReadReg2 == `R6) ? q6 : q7;
+	always @(ReadReg2) begin
+		case(ReadReg2)
+			`R0 : ReadData2 = q0;
+			`R1 : ReadData2 = q1;
+			`R2 : ReadData2 = q2;
+			`R3 : ReadData2 = q3;
+			`R4 : ReadData2 = q4;
+			`R5 : ReadData2 = q5;
+			`R6 : ReadData2 = q6;
+			`R7 : ReadData2 = q7;
+		endcase
+	end
 
-	case (WriteReg)
-		`R0 : ld0 = 1`b1;
-		`R1 : ld1 = 1`b1;
-		`R2 : ld2 = 1`b1;
-		`R3 : ld3 = 1`b1;
-		`R4 : ld4 = 1`b1;
-		`R5 : ld5 = 1`b1;
-		`R6 : ld6 = 1`b1;
-		`R7 : ld7 = 1`b1;
-	endcase // WriteReg 
-
+	always @(WriteReg) begin
+		case (WriteReg)
+		`R0 : ld0 = 1;
+		`R1 : ld1 = 1;
+		`R2 : ld2 = 1;
+		`R3 : ld3 = 1;
+		`R4 : ld4 = 1;
+		`R5 : ld5 = 1;
+		`R6 : ld6 = 1;
+		`R7 : ld7 = 1;
+		endcase // WriteReg 
+	end
 
 	always@(posedge rst) begin
 		ld0 = 0; ld1 = 0; ld2 = 0; ld3 = 0;
