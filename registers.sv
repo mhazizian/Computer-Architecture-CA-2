@@ -8,7 +8,7 @@ module register_1(clk, rst, ld, d, q);
 		if (rst) q <= 1'b0;
 	end
 endmodule
-
+///////////////// Edited
 module register_8(clk, rst, ld, d, q);
 
 	input clk, rst, ld;
@@ -17,7 +17,7 @@ module register_8(clk, rst, ld, d, q);
 
 	always@(posedge clk, posedge rst) begin
 		if (ld) q <= d;
-		if (rst) q <= 8'b0;
+		if (rst) q <= 1;
 	end
 endmodule
 
