@@ -3,14 +3,15 @@
 module Controller(instruction, ALU_op, sel_ALUScr_reg, sel_ALUScr_const,
 	sel_PCSrc_offset, sel_PCSrc_const, sel_PCSrc_plus1, MemWrite, MemRead,
 	sel_RegisterFile_in_alu, sel_RegisterFile_in_memory, RegisterFileWriteEn, sel_RegisterFileWriteDst_r2,
-	sel_RegisterFile_in_shifter);
+	sel_RegisterFile_in_shifter, sel_RegisterFileReadReg2_rd);
 
 	input [5:0] instruction;
 	output logic[2:0] ALU_op;
 	output logic sel_ALUScr_reg, sel_ALUScr_const,
 		sel_PCSrc_const, sel_PCSrc_offset, sel_PCSrc_plus1,
 		MemWrite, MemRead, sel_RegisterFile_in_alu, sel_RegisterFile_in_memory,
-		RegisterFileWriteEn, sel_RegisterFileWriteDst_r2, sel_RegisterFile_in_shifter;
+		RegisterFileWriteEn, sel_RegisterFileWriteDst_r2, sel_RegisterFile_in_shifter,
+		sel_RegisterFileReadReg2_rd;
 
 	always @(instruction) begin
 		sel_ALUScr_reg = 0; sel_ALUScr_const = 0;
@@ -22,6 +23,7 @@ module Controller(instruction, ALU_op, sel_ALUScr_reg, sel_ALUScr_const,
 		RegisterFileWriteEn = 0;
 		sel_RegisterFileWriteDst_r2 = 0;
 		sel_RegisterFile_in_shifter = 0;
+		sel_RegisterFileReadReg2_rd = 0;
 
 
 		if (instruction[5:4] ==`REGISTER_TYPE_OPCODE) begin
@@ -49,6 +51,7 @@ module Controller(instruction, ALU_op, sel_ALUScr_reg, sel_ALUScr_const,
 
 			if (instruction[2:1] == `STM_FN) begin
 				MemWrite = 1;
+				sel_RegisterFileReadReg2_rd = 1;
 			end
 			if (instruction[2:1] == `LDM_FN) begin
 				MemRead = 1;
