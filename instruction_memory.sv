@@ -33,6 +33,11 @@ module InstructionMemory(rst, address, instruction);
 //		ins_memory[10] <= 19'b1110000000000001111; // pc = 15
 //		ins_memory[16] <= 19'b0011000110011000000; // R1 = R4 ^ R6		// R1 = 249
 		
+		
+		ins_memory[20] <= {3'b100, 2'b01, 3'b011, 3'b000, 8'b00001010}; // save-memory: R3(10) to R1
+		ins_memory[23] <= {3'b100, 2'b00, 3'b111, 3'b000, 8'b00001010}; // load-memory: R3(10) to R1
+
+
 	end
 
 	always @(address) begin
