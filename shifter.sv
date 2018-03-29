@@ -1,11 +1,11 @@
 `include "defines.sv"
 
-module shifter(data, opcode, shift_out, shift_count, C, shift_enable);
+module shifter(data, opcode, shift_out, shift_count, C);//, shift_enable);
 
 	input [7:0] data;
 	input [1:0] opcode;
 	input [2:0] shift_count;
-	input shift_enable;
+//	input shift_enable;
 	
 	output logic C;
 //	output logic Z, C;
@@ -13,7 +13,7 @@ module shifter(data, opcode, shift_out, shift_count, C, shift_enable);
 	
 //	assign Z = (shift_out == 8'b0 ? 1 : 0);	
 	
-	always @(posedge shift_enable) begin
+	always @(data, opcode, shift_count) begin
 	 
 		integer i;
 	

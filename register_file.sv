@@ -46,7 +46,7 @@ module RegisterFile(clk, rst, RegWriteEn, ReadReg1, ReadReg2 , WriteReg, WriteDa
 		endcase
 	end
 
-	always @(posedge clk, WriteReg) begin
+	always @(negedge clk, WriteReg) begin
 
 		ld0 = 0; ld1 = 0; ld2 = 0; ld3 = 0;
 		ld4 = 0; ld5 = 0; ld6 = 0; ld7 = 0;
