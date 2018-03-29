@@ -13,18 +13,16 @@ module data_path(clk, rst);
 				sel_RegisterFile_in_alu, sel_RegisterFile_in_memory, RegisterFileWriteEn,
 				sel_RegisterFileWriteDst_r2, sel_RegisterFile_in_shifter, sel_RegisterFileReadReg2_rd;
 		
-	logic [2:0] ALU_op, register_file_write_dst, register_file_reg2_input;
+	logic [2:0] ALU_op, register_file_reg2_input;
 	
 	
 	
 	// Controller
 
-	Controller controller(instruction[18:13], ALU_op, sel_ALUScr_reg, sel_ALUScr_const,
-		sel_PCSrc_offset, sel_PCSrc_const, sel_PCSrc_plus1, MemWrite, MemRead,
-		sel_RegisterFile_in_alu, sel_RegisterFile_in_memory, RegisterFileWriteEn,
-		sel_RegisterFileWriteDst_r2, sel_RegisterFile_in_shifter, sel_RegisterFileReadReg2_rd);
-	
-	
+	Controller controller(instruction, ALU_op, sel_ALUScr_reg, sel_ALUScr_const,
+	sel_PCSrc_offset, sel_PCSrc_const, sel_PCSrc_plus1, MemWrite, MemRead,
+	sel_RegisterFile_in_alu, sel_RegisterFile_in_memory, RegisterFileWriteEn,
+	sel_RegisterFile_in_shifter, sel_RegisterFileReadReg2_rd);
 	
 	// Sign enxtender
 	
@@ -52,11 +50,11 @@ module data_path(clk, rst);
 	
 	// Register file
 	
-	mux_2_to_1_3 mux_rf_write_source(instruction[10:8], instruction[13:11], sel_RegisterFileWriteDst_r2, register_file_write_dst);
+//	mux_2_to_1_3 mux_rf_write_source(instruction[10:8], instruction[13:11], sel_RegisterFileWriteDst_r2, register_file_write_dst);
 	
 	mux_2_to_1_3 mux_rf_second_source(instruction[13:11], instruction[7:5], sel_RegisterFileReadReg2_rd, register_file_reg2_input);
 	
-	RegisterFile rf(clk, rst, RegisterFileWriteEn, instruction[10:8], register_file_reg2_input, register_file_write_dst, register_file_write_input, alu_in1, register_file_out2);
+	RegisterFile rf(clk, rst, RegisterFileWriteEn, instruction[10:8], register_file_reg2_input, instruction[13:11], register_file_write_input, alu_in1, register_file_out2);
 
 	
 	
