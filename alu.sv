@@ -1,12 +1,13 @@
 `include "defines.sv"
 
-module Alu(alu_in1, alu_in2, cin, opcode, alu_out, zero, cout);
+module Alu(alu_in1, alu_in2, cin, opcode, alu_out, cout);
 
 	input [7:0] alu_in1, alu_in2;
 	input [2:0] opcode;
 	input cin;
 	output logic [7:0] alu_out;
-	output logic zero, cout;
+//	output logic zero, cout;
+	output logic cout;
 	
 	always @(*) begin
 		case(opcode)
@@ -19,8 +20,9 @@ module Alu(alu_in1, alu_in2, cin, opcode, alu_out, zero, cout);
 			`XOR_FN:		alu_out <= alu_in1 ^ alu_in2;
 			`MASK_FN:		alu_out <= ~(alu_in1 & alu_in2);
 		endcase
+	
 	end
 	
-	assign zero = (alu_out == 7'b0 ? 1 : 0);
+//	assign zero = (alu_out == 8'b0 ? 1 : 0);
 	
 endmodule

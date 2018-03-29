@@ -23,7 +23,7 @@ module InstructionMemory(rst, address, instruction);
 		//	Conditional jump command
 		
 		ins_memory[10] <= 19'b1110000000000001111; // pc = 15
-		ins_memory[15] <= 19'b0011000110011000000; // R1 = R4 ^ R6		// R1 = 249
+		ins_memory[16] <= 19'b0011000110011000000; // R1 = R4 ^ R6		// R1 = 249
 		
 	end
 
