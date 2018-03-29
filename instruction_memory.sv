@@ -19,11 +19,19 @@ module InstructionMemory(rst, address, instruction);
 		ins_memory[7] <= 19'b0010111011001100100; // R6 = R6 + R3		// R6 = 6
 		ins_memory[8] <= 19'b0011001101111101111; // R3 = R3 ^ R7		// R3 = 0
 		ins_memory[9] <= 19'b0011110010000000100; // R4 = ~(R4 & R0)	// R4 = 255
+		ins_memory[10] <= 19'b0011000110011000000; // R1 = R4 ^ R6		// R1 = 249
+		
+		// Shifter commands
+		
+		ins_memory[11] <= 19'b1100001000101100000; // R2 = 11001000
+		ins_memory[12] <= 19'b1100101101001100000; // R3 = 00011001
+		ins_memory[13] <= 19'b1101010100101100000; // R5 = 11001111
+		ins_memory[14] <= 19'b1101111000101100000; // R6 = 00111111
 		
 		//	Conditional jump command
 		
-		ins_memory[10] <= 19'b1110000000000001111; // pc = 15
-		ins_memory[16] <= 19'b0011000110011000000; // R1 = R4 ^ R6		// R1 = 249
+//		ins_memory[10] <= 19'b1110000000000001111; // pc = 15
+//		ins_memory[16] <= 19'b0011000110011000000; // R1 = R4 ^ R6		// R1 = 249
 		
 	end
 
