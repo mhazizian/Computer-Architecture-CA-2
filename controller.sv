@@ -1,13 +1,12 @@
 `include "defines.sv"
 
-module Controller(instruction, ALU_op, sel_ALUScr_reg, sel_ALUScr_const,
+module Controller(instruction, c , z, ALU_op, sel_ALUScr_reg, sel_ALUScr_const,
 	sel_PCSrc_offset, sel_PCSrc_const, sel_PCSrc_plus1, MemWrite, MemRead,
 	sel_RegisterFile_in_alu, sel_RegisterFile_in_memory, RegisterFileWriteEn,
 	sel_RegisterFile_in_shifter, sel_RegisterFileReadReg2_rd, sel_Cin_alu, sel_Cin_shifter);
 
 	input [5:0] instruction;
-	// input c, z;
-	logic c, z;
+	input c, z;
 	output logic[2:0] ALU_op;
 	output logic sel_ALUScr_reg, sel_ALUScr_const,
 		sel_PCSrc_const, sel_PCSrc_offset, sel_PCSrc_plus1,
@@ -29,8 +28,8 @@ module Controller(instruction, ALU_op, sel_ALUScr_reg, sel_ALUScr_const,
 		sel_RegisterFile_in_shifter = 0;
 		sel_RegisterFileReadReg2_rd = 0;
 
-		 sel_Cin_alu = 0;
-		 sel_Cin_shifter = 0;
+		sel_Cin_alu = 0;
+		sel_Cin_shifter = 0;
 
 
 		if (instruction[5:4] ==`REGISTER_TYPE_OPCODE) begin
