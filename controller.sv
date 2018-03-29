@@ -55,7 +55,7 @@ module Controller(instruction, ALU_op, sel_ALUScr_reg, sel_ALUScr_const,
 			sel_PCSrc_offset = 1;
 			sel_RegisterFile_in_alu = 1;
 		end
-		if (instruction[5:2] ==`NO_CONDITIONAL_JUMP_TYPE_OPCODE) begin
+		if (instruction[5:2] ==`NON_CONDITIONAL_JUMP_TYPE_OPCODE) begin
 			sel_PCSrc_const = 1;
 			sel_RegisterFile_in_alu = 1;
 		end
