@@ -33,11 +33,20 @@ module InstructionMemory(rst, address, instruction);
 //		ins_memory[10] <= 19'b1110000000000001111; // pc = 15
 //		ins_memory[16] <= 19'b0011000110011000000; // R1 = R4 ^ R6		// R1 = 249
 		
+		//	Conditional jump command
 		
 		ins_memory[20] <= {3'b100, 2'b01, 3'b011, 3'b000, 8'b00001010}; // save-memory: R3(10) to R1
 		ins_memory[23] <= {3'b100, 2'b00, 3'b111, 3'b000, 8'b00001010}; // load-memory: R3(10) to R1
+		
+		// Branch Z command
+		
+		ins_memory[25] <= {3'b101, 2'b00, 3'b111, 3'b000, 8'b00000011}; // BrachZ is True pc = pc + 1 + 3
 
-
+		// Branch C command
+		
+		ins_memory[29] <= {2'b01, 3'b000, 3'b010, 3'b110, 8'b11111111}; // 		
+		ins_memory[30] <= {3'b101, 2'b10, 3'b111, 3'b000, 8'b00000001}; // BrachZ is True pc = pc + 1 + 3
+		
 	end
 
 	always @(address) begin
