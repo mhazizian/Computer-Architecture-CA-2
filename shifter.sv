@@ -1,17 +1,17 @@
 `include "defines.sv"
 
-module shifter(data, opcode, shift_out, shift_count, C);//, shift_enable);
+module shifter(data, opcode, shift_out, shift_count, C, Z);
 
 	input [7:0] data;
 	input [1:0] opcode;
 	input [2:0] shift_count;
 //	input shift_enable;
 	
-	output logic C;
-//	output logic Z, C;
+//	output logic C;
+	output logic Z, C;
 	output logic [7:0] shift_out;
 	
-//	assign Z = (shift_out == 8'b0 ? 1 : 0);	
+	assign Z = (shift_out == 8'b0 ? 1 : 0);	
 	
 	always @(data, opcode, shift_count) begin
 	 

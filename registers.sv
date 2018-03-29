@@ -1,10 +1,10 @@
-module register_1(clk, rst, ld, d, q);
+module register_1(clk, rst, d, q);
 
-	input clk, rst, ld, d;
+	input clk, rst, d;
 	output logic q;
 	
 	always@(posedge clk, posedge rst) begin
-		if (ld) q <= d;
+		q <= d;
 		if (rst) q <= 1'b0;
 	end
 endmodule

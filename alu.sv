@@ -1,13 +1,12 @@
 `include "defines.sv"
 
-module Alu(alu_in1, alu_in2, cin, opcode, alu_out, cout);
+module Alu(alu_in1, alu_in2, cin, opcode, alu_out, cout, Z);
 
 	input [7:0] alu_in1, alu_in2;
 	input [2:0] opcode;
 	input cin;
 	output logic [7:0] alu_out;
-//	output logic zero, cout;
-	output logic cout;
+	output logic Z, cout;
 	
 	always @(*) begin
 		case(opcode)
@@ -15,14 +14,34 @@ module Alu(alu_in1, alu_in2, cin, opcode, alu_out, cout);
 			`ADDC_FN:		{cout, alu_out} <= alu_in1 + alu_in2 + cin;
 			`SUB_FN:		{cout, alu_out} <= alu_in1 - alu_in2;
 			`SUBC_FN: 		{cout, alu_out} <= alu_in1 - alu_in2 - cin;
-			`AND_FN:		alu_out <= alu_in1 & alu_in2;
-			`OR_FN:			alu_out <= alu_in1 | alu_in2;
-			`XOR_FN:		alu_out <= alu_in1 ^ alu_in2;
-			`MASK_FN:		alu_out <= ~(alu_in1 & alu_in2);
+			
+			`AND_FN:		
+			begin
+				alu_out <= alu_in1 & alu_in2;
+				cout <= 1'b0;
+			end
+			
+			`OR_FN:			
+			begin
+				alu_out <= alu_in1 | alu_in2;
+				cout <= 1'b0;
+			end
+			
+			`XOR_FN:		
+			begin
+				alu_out <= alu_in1 ^ alu_in2;
+				cout <= 1'b0;
+			end
+			
+			`MASK_FN:		
+			begin
+				alu_out <= ~(alu_in1 & alu_in2);
+				cout <= 1'b0;
+			end
 		endcase
 	
 	end
 	
-//	assign zero = (alu_out == 8'b0 ? 1 : 0);
+	assign Z = (alu_out == 8'b0 ? 1 : 0);
 	
 endmodule
