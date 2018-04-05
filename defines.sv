@@ -15,14 +15,14 @@
 
 // Register type functions
 
-`define ADD_FN 3'b000
-`define ADDC_FN 3'b001
-`define SUB_FN 3'b010
-`define SUBC_FN 3'b011
-`define AND_FN 3'b100
-`define OR_FN 3'b101
-`define XOR_FN 3'b110
-`define MASK_FN 3'b111
+`define ADD_FN 4'b0000
+`define ADDC_FN 4'b0001
+`define SUB_FN 4'b0010
+`define SUBC_FN 4'b0011
+`define AND_FN 4'b0100
+`define OR_FN 4'b0101
+`define XOR_FN 4'b0110
+`define MASK_FN 4'b0111
 
 // Shift type functions
 

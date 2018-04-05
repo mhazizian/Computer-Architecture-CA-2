@@ -60,7 +60,26 @@ module InstructionMemory(rst, address, instruction);
 		ins_memory[8] <= {2'b00, 3'b001, 3'b011, 3'b001, 3'b010, 5'b00110}; // R3 = R1 + R2 + ci
 		ins_memory[9] <= {3'b100, 2'b01, 3'b011, 3'b000, 8'b01101001}; // save-memory: R3 to R0(105)
 
-		
+
+		// Program 2
+/*		
+		ins_memory[0] = 19'b0000011100000000000;  
+		ins_memory[1] = 19'b0000000100000000000;  
+		ins_memory[2] = 19'b0101001100100010100;  
+		ins_memory[3] = 19'b1010000000000000110;  
+		ins_memory[4] = 19'b1000001000101100100;  
+		ins_memory[5] = 19'b0001001111101000000; 
+		ins_memory[6] = 19'b1011100000000000001;  
+		ins_memory[7] = 19'b0000011101000000000;  
+		ins_memory[8] = 19'b0100000100100000001;  
+		ins_memory[9] = 19'b1110000000000000010;  
+		ins_memory[10] = 19'b0000000000000000000;  
+		ins_memory[11] = 19'b0000000000000000000;  
+		ins_memory[12] = 19'b0000000000000000000;  
+		ins_memory[13] = 19'b0000000000000000000;  
+		ins_memory[14] = 19'b0000000000000000000;  
+		ins_memory[15] = 19'b0000000000000000000;  
+*/		
 	end
 
 	always @(address) begin

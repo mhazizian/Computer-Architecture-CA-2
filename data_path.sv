@@ -14,7 +14,9 @@ module data_path(clk, rst);
 				sel_RegisterFileWriteDst_r2, sel_RegisterFile_in_shifter, sel_RegisterFileReadReg2_rd,
 				C_in, C_out, C_in_shifter, C_in_alu, sel_Cin_alu, sel_Cin_shifter, sel_PCSrc_stack, push_stack, pop_stack;
 		
-	logic [2:0] ALU_op, register_file_reg2_input;
+	logic [2:0] register_file_reg2_input;
+	
+	logic [3:0] ALU_op;
 	
 	// Flip flops
 	
@@ -59,7 +61,7 @@ module data_path(clk, rst);
 	
 	mux_2_to_1_8 mux_alu_source(register_file_out2, instruction[7:0], sel_ALUScr_reg, sel_ALUScr_const, alu_in2);
 
-	Alu alu(alu_in1, alu_in2, C_out, instruction[16:14], alu_out, C_in_alu, Z_in_alu);
+	Alu alu(alu_in1, alu_in2, C_out, ALU_op, alu_out, C_in_alu, Z_in_alu);
 		
 	// Shifter
 		
