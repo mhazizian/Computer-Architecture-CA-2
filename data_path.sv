@@ -67,7 +67,7 @@ module data_path(clk, rst);
 	
 	// Data Memory block
 	
-	DataMemory data_memory(rst, alu_out, register_file_out2, MemRead, MemWrite, data_memory_out);
+	DataMemory data_memory(clk, rst, alu_out, register_file_out2, MemRead, MemWrite, data_memory_out);
 
 	mux_3_to_1_8 mux_data_memory(data_memory_out, alu_out, shift_out, sel_RegisterFile_in_memory, sel_RegisterFile_in_alu, sel_RegisterFile_in_shifter, register_file_write_input);
 
