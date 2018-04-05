@@ -38,6 +38,9 @@ module Alu(alu_in1, alu_in2, cin, opcode, alu_out, cout, Z);
 				alu_out <= ~(alu_in1 & alu_in2);
 				cout <= 1'b0;
 			end
+			
+			`ADD_SIGNED:
+				alu_out <= alu_in2[7] ? (alu_in1 - {1'b0, alu_in2[6:0]}) : (alu_in1 + {1'b0, alu_in2[6:0]});
 		endcase
 	
 	end
