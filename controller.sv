@@ -9,7 +9,7 @@ module Controller(instruction, c , z, ALU_op, sel_ALUScr_reg, sel_ALUScr_const,
 
 	input [5:0] instruction;
 	input c, z;
-	output logic[2:0] ALU_op;
+	output logic[3:0] ALU_op;
 	output logic sel_ALUScr_reg, sel_ALUScr_const,
 		sel_PCSrc_const, sel_PCSrc_offset, sel_PCSrc_plus1,
 		MemWrite, MemRead, sel_RegisterFile_in_alu, sel_RegisterFile_in_memory,
@@ -40,7 +40,7 @@ module Controller(instruction, c , z, ALU_op, sel_ALUScr_reg, sel_ALUScr_const,
 
 
 		if (instruction[5:4] ==`REGISTER_TYPE_OPCODE) begin
-			ALU_op = instruction[3:0];
+			ALU_op = {1'b0, instruction[3:1]};
 			sel_ALUScr_reg = 1;
 			sel_PCSrc_plus1 = 1;
 			sel_RegisterFile_in_alu = 1;
@@ -48,7 +48,7 @@ module Controller(instruction, c , z, ALU_op, sel_ALUScr_reg, sel_ALUScr_const,
 			sel_Cin_alu = 1;
 		end
 		if (instruction[5:4] ==`IMMEDIATE_TYPE_OPCODE) begin
-			ALU_op = instruction[3:0];
+			ALU_op = {1'b0, instruction[3:1]};
 			sel_ALUScr_const = 1;
 			sel_PCSrc_plus1 = 1;
 			sel_RegisterFile_in_alu = 1;
@@ -65,6 +65,7 @@ module Controller(instruction, c , z, ALU_op, sel_ALUScr_reg, sel_ALUScr_const,
 				sel_Cin_shifter = 1;
 			end
 			`MEMORY_TYPE_OPCODE : begin
+				// ALU_op = `ADD_FN;
 				sel_ALUScr_const = 1;
 				sel_PCSrc_plus1 = 1;
 
@@ -81,6 +82,7 @@ module Controller(instruction, c , z, ALU_op, sel_ALUScr_reg, sel_ALUScr_const,
 			end
 			`CONDITIONAL_JUMP_TYPE_OPCODE : begin
 				sel_PCSrc_plus1 = 1;
+				// ALU_op = `ADD_FN;
 
 				case (instruction[2:1])
 					`BZ_FN : if (z) begin
