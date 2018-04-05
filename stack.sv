@@ -1,7 +1,7 @@
-module Stack(address, push, pop, stack_out);
+module Stack(clk, address, push, pop, stack_out);
 
 	input[11:0] address;
-	input push, pop;
+	input clk, push, pop;
 	output logic [11:0] stack_out;
 
 	reg [11:0] stack [0:7];
@@ -9,7 +9,7 @@ module Stack(address, push, pop, stack_out);
 	
 	assign stack_out = stack[pointer];	
 	
-	always @(push, pop, address) begin	
+	always @(posedge clk) begin	
 		if(pop)	begin
 			pointer <= pointer - 3'b01;		
 		end
