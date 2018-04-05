@@ -45,7 +45,12 @@ module InstructionMemory(rst, address, instruction);
 		// Branch C command
 		
 		ins_memory[29] <= {2'b01, 3'b000, 3'b010, 3'b110, 8'b11111111}; // 		
-		ins_memory[30] <= {3'b101, 2'b10, 3'b111, 3'b000, 8'b00000001}; // BrachZ is True pc = pc + 1 + 3
+		ins_memory[30] <= {3'b101, 2'b10, 3'b111, 3'b000, 8'b00000011}; // BrachZ is True pc = pc + 1 + 3
+
+		ins_memory[40] <= {5'b11101, 2'b11, 12'b000000101101}; // JSB to 45
+		ins_memory[41] <= {3'b101, 2'b10, 3'b111, 3'b000, 8'b00001010}; // BrachZ is True pc = pc + 1 + 3
+		ins_memory[45] <= {6'b111100, 13'b0000101000000}; // RET to 41
+
 		
 	end
 
