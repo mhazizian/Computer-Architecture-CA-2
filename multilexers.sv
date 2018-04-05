@@ -57,3 +57,14 @@ module mux_3_to_1_12(first, second, third, sel_first, sel_second, sel_third, out
 	assign out = sel_first ? first : (sel_second ? second : (sel_third ? third : out));  
 	
 endmodule
+
+
+module mux_4_to_1_12(first, second, third, fourth, sel_first, sel_second, sel_third, sel_fourth, out);
+
+	input[11:0] first, second, third, fourth;
+	input sel_first, sel_second, sel_third, sel_fourth;
+	output logic [11:0] out;
+	
+	assign out = sel_first ? first : (sel_second ? second : (sel_third ? third : (sel_fourth ? fourth : out)));  
+	
+endmodule
