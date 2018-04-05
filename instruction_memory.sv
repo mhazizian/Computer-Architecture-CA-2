@@ -73,7 +73,7 @@ module InstructionMemory(rst, address, instruction);
 		// LOOP 
 		ins_memory[3] <= {2'b01, 3'b010, 3'b011, 3'b001, 8'b00010100}; // R3 = R1 - 20
 
-		ins_memory[4] <= {3'b101, 2'b00, 6'b111000, 8'b00000101}; // BrachZ is True pc = pc + 1 + 5 (To END)
+		ins_memory[4] <= {3'b101, 2'b00, 6'b111000, 8'b00000110}; // BrachZ is True pc = pc + 1 + 6 (To END)
 		
 		ins_memory[5] <= {3'b100, 2'b00, 3'b010, 3'b001, 8'b01100100}; // load-memory: R1(100) to R2
 		ins_memory[6] <= {2'b00, 3'b010, 3'b011, 3'b111, 3'b010, 5'b10100}; // R3 = R7 - R2
