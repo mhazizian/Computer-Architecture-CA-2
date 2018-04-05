@@ -23,6 +23,7 @@
 `define OR_FN 4'b0101
 `define XOR_FN 4'b0110
 `define MASK_FN 4'b0111
+`define ADD_SIGNED 4'b1000
 
 // Shift type functions
 
