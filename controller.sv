@@ -1,9 +1,11 @@
 `include "defines.sv"
 
 module Controller(instruction, c , z, ALU_op, sel_ALUScr_reg, sel_ALUScr_const,
-	sel_PCSrc_offset, sel_PCSrc_const, sel_PCSrc_plus1, MemWrite, MemRead,
+	sel_PCSrc_offset, sel_PCSrc_const, sel_PCSrc_plus1, sel_PCSrc_stack,
+	MemWrite, MemRead,
 	sel_RegisterFile_in_alu, sel_RegisterFile_in_memory, RegisterFileWriteEn,
-	sel_RegisterFile_in_shifter, sel_RegisterFileReadReg2_rd, sel_Cin_alu, sel_Cin_shifter);
+	sel_RegisterFile_in_shifter, sel_RegisterFileReadReg2_rd, sel_Cin_alu, sel_Cin_shifter,
+	push_stack, pop_stack);
 
 	input [5:0] instruction;
 	input c, z;
@@ -12,7 +14,8 @@ module Controller(instruction, c , z, ALU_op, sel_ALUScr_reg, sel_ALUScr_const,
 		sel_PCSrc_const, sel_PCSrc_offset, sel_PCSrc_plus1,
 		MemWrite, MemRead, sel_RegisterFile_in_alu, sel_RegisterFile_in_memory,
 		RegisterFileWriteEn, sel_RegisterFile_in_shifter,
-		sel_RegisterFileReadReg2_rd, sel_Cin_alu, sel_Cin_shifter;
+		sel_RegisterFileReadReg2_rd, sel_Cin_alu, sel_Cin_shifter, push_stack, pop_stack, 
+		sel_PCSrc_stack;
 
 	always @(instruction) begin
 		sel_ALUScr_reg = 0; sel_ALUScr_const = 0;
@@ -30,6 +33,10 @@ module Controller(instruction, c , z, ALU_op, sel_ALUScr_reg, sel_ALUScr_const,
 
 		sel_Cin_alu = 0;
 		sel_Cin_shifter = 0;
+
+		push_stack = 0;
+		pop_stack = 0;
+		sel_PCSrc_stack = 0;
 
 
 		if (instruction[5:4] ==`REGISTER_TYPE_OPCODE) begin
@@ -100,6 +107,12 @@ module Controller(instruction, c , z, ALU_op, sel_ALUScr_reg, sel_ALUScr_const,
 		if (instruction[5:2] ==`NON_CONDITIONAL_JUMP_TYPE_OPCODE) begin
 			sel_PCSrc_const = 1;
 			sel_RegisterFile_in_alu = 1;
+			if (instruction[5:1] == `JSB_OPCODE) push_stack = 1;
+		end
+
+		if (instruction[5:0] == `OTHER_TYPE_OPCODE) begin
+			pop_stack = 1;
+			sel_PCSrc_stack = 1;
 		end
 			
 	end
