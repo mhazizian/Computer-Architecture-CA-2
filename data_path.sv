@@ -26,7 +26,7 @@ module data_path(clk, rst);
 	
 	// Controller
 
-	Controller controller(instruction[18:13], c , z, ALU_op, sel_ALUScr_reg, sel_ALUScr_const,
+	Controller controller(instruction[18:13], C_out , Z_out, ALU_op, sel_ALUScr_reg, sel_ALUScr_const,
 	sel_PCSrc_offset, sel_PCSrc_const, sel_PCSrc_plus1, sel_PCSrc_stack,
 	MemWrite, MemRead,
 	sel_RegisterFile_in_alu, sel_RegisterFile_in_memory, RegisterFileWriteEn,

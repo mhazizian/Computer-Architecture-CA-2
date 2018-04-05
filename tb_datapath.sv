@@ -3,7 +3,7 @@ module TB_datapath();
 
 	data_path dp(clk, rst);
 
-	initial repeat(200) #50 clk = ~clk;
+	initial repeat(2000) #50 clk = ~clk;
 
 	initial begin 
 		#75

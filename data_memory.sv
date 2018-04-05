@@ -19,6 +19,9 @@ module DataMemory(clk, rst, Address, WriteData, MemRead, MemWrite, ReadData);
 
 			data[102] = 8'b10100000;
 			data[103] = 8'b01100100;
+
+			data[119] = 8'b11100000;
+
 		end
 
 		if (MemWrite) data[Address] = WriteData;
