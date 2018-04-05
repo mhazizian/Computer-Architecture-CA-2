@@ -65,7 +65,7 @@ module Controller(instruction, c , z, ALU_op, sel_ALUScr_reg, sel_ALUScr_const,
 				sel_Cin_shifter = 1;
 			end
 			`MEMORY_TYPE_OPCODE : begin
-				// ALU_op = `ADD_FN;
+				ALU_op = `ADD_SIGNED;
 				sel_ALUScr_const = 1;
 				sel_PCSrc_plus1 = 1;
 
@@ -82,7 +82,7 @@ module Controller(instruction, c , z, ALU_op, sel_ALUScr_reg, sel_ALUScr_const,
 			end
 			`CONDITIONAL_JUMP_TYPE_OPCODE : begin
 				sel_PCSrc_plus1 = 1;
-				// ALU_op = `ADD_FN;
+				ALU_op = `ADD_SIGNED;
 
 				case (instruction[2:1])
 					`BZ_FN : if (z) begin
