@@ -8,7 +8,7 @@ module register_1(clk, rst, d, q);
 		if (rst) q <= 1'b0;
 	end
 endmodule
-///////////////// Edited
+
 module register_8(clk, rst, ld, d, q);
 
 	input clk, rst, ld;
